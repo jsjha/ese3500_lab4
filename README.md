@@ -8,6 +8,13 @@
 
 ## Github Repo Submission Resources
 
+## Q1
+The ST7735 LCD controller differentiates between  command and data based on the state of the Data/Command pin. In the ST7735 code provided, the controller toggles between command and data states by setting or clearing the LCD_DC bit in the LCD_PORT register. When the DC pin is low (cleared), the transmission is seen as a command; concverly when the DC pin is low (set), the transmission is seen as data.
+
+## Q@
+
+
+
 * [ESE5160 Example Repo Submission](https://github.com/ese5160/example-repository-submission)
 * [Markdown Guide: Basic Syntax](https://www.markdownguide.org/basic-syntax/)
 * [Adobe free video to gif converter](https://www.adobe.com/express/feature/video/convert/video-to-gif)

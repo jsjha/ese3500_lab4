@@ -65,6 +65,8 @@ char auth[] = BLYNK_AUTH_TOKEN;
 
 void setup()
 {
+  pinMode(16, OUTPUT);
+  pinMode(17, OUTPUT);
   // Debug console
   Serial.begin(9600);
   Blynk.begin(auth, MY_SSID, MY_PASSWORD);
@@ -72,8 +74,35 @@ void setup()
 
 BLYNK_WRITE (V0)
 {
-  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)          
-  Serial.print("Blynk.Cloud is writing something to V0");
+
+  if(param.asInt() == 1)
+  {
+    // execute this code if the switch widget is now ON
+    digitalWrite(16,HIGH);  // Set digital pin 2 HIGH
+  }
+  else
+  {
+    // execute this code if the switch widget is now OFF
+    digitalWrite(16,LOW);  // Set digital pin 2 LOW    
+  }
+
+}
+
+BLYNK_WRITE (V1)
+{
+
+  if(param.asInt() == 1)
+  {
+    // execute this code if the switch widget is now ON
+    digitalWrite(17,HIGH);  // Set digital pin 2 HIGH
+    
+  }
+  else
+  {
+    // execute this code if the switch widget is now OFF
+    digitalWrite(17,LOW);  // Set digital pin 2 LOW    
+  }
+
 }
 
 void loop()

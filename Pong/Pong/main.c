@@ -48,6 +48,10 @@ void Initialize() {
 	
 	
 	DDRD |= (1<<DDD3);
+	DDRD |= (1<<DDD4);
+	
+	DDRD &= ~(1 << DDD0);
+	DDRD &= ~(1 << DDD1);
 	
 	// Clear power reduction bit for ADC
 	PRR0 &= ~(1 << PRADC);
@@ -113,8 +117,10 @@ void updateBallPosition() {
 		}
 		score1 += 1;
 		PORTD |= (1 << PORTD3);
+		PORTD |= (1 << PORTD4);
 		_delay_ms(50);
 		PORTD &= ~(1 << PORTD3);
+		PORTD &= ~(1 << PORTD4);
 		
 	}
 	
@@ -136,8 +142,10 @@ void updateBallPosition() {
 		}
 		score2 += 1;
 		PORTD |= (1 << PORTD3);
+		PORTD |= (1 << PORTD4);
 		_delay_ms(50);
 		PORTD &= ~(1 << PORTD3);
+		PORTD &= ~(1 << PORTD4);
 		
 	}
 	
@@ -195,20 +203,43 @@ void updateBallPosition() {
 
 void updatePaddlePosition1() {
 	// Clear the old paddle position
+	//LCD_drawBlock(paddleX1, paddleY1, paddleX1 + PADDLE_WIDTH, paddleY1 + PADDLE_HEIGHT, BACKGROUND_COLOR);
+	//
+	//paddleY1 += paddleVelY1;
+	//
+	//// Ensure paddle stays within screen boundaries
+	//if (paddleY1 < 0) {
+	//paddleY1 = 0;
+	//paddleVelY1 = -paddleVelY1;
+	//} else if (paddleY1 > SCREEN_HEIGHT - PADDLE_HEIGHT) {
+	//paddleY1 = SCREEN_HEIGHT - PADDLE_HEIGHT;
+	//paddleVelY1 = -paddleVelY1;
+	//}
+	//
+	//LCD_drawBlock(paddleX1, paddleY1, paddleX1 + PADDLE_WIDTH, paddleY1 + PADDLE_HEIGHT, WHITE);
 	LCD_drawBlock(paddleX1, paddleY1, paddleX1 + PADDLE_WIDTH, paddleY1 + PADDLE_HEIGHT, BACKGROUND_COLOR);
 	
-	paddleY1 += paddleVelY1;
-	
-	// Ensure paddle stays within screen boundaries
-	if (paddleY1 < 0) {
-		paddleY1 = 0;
-		paddleVelY1 = -paddleVelY1;
-		} else if (paddleY1 > SCREEN_HEIGHT - PADDLE_HEIGHT) {
-		paddleY1 = SCREEN_HEIGHT - PADDLE_HEIGHT;
-		paddleVelY1 = -paddleVelY1;
+	if ((PIND & (1 << PIND0))) {
+		if (paddleY1 - 5>= 0) {
+			paddleY1 -= 5;
+		}
+		} else if (PIND & (1 << PIND1)) {
+		if (paddleY1 + PADDLE_HEIGHT <= 127) {
+			paddleY1 += 5;
+		}
 	}
 	
+	if (paddleY1 < 0) {
+		paddleY1 = 0;
+		} else if (paddleY1 > SCREEN_HEIGHT - PADDLE_HEIGHT) {
+		paddleY1 = SCREEN_HEIGHT - PADDLE_HEIGHT - 1;
+	}
+	
+	
+	
 	LCD_drawBlock(paddleX1, paddleY1, paddleX1 + PADDLE_WIDTH, paddleY1 + PADDLE_HEIGHT, WHITE);
+	
+	
 }
 
 void updatePaddlePosition2() {
@@ -311,4 +342,3 @@ int main() {
 	
 	return 0;
 }
-
