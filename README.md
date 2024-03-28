@@ -1,8 +1,8 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/ea68GWBk)
 # lab4-pong-skeleton
 
-    * Name: 
-    * Github username: 
+    * Name: Jessi Jha
+    * Github username: jsjha
     * Github Repository URL: 
     * Description of hardware: (embedded hardware, laptop, etc) 
 
@@ -25,6 +25,10 @@ There are differences in the colors shown on the screeb because a 24-bit RGB can
 
 ## Q5
 No, we don't need debouncing. We are converting a range of voltage inputs into a simple "up," "down," or "zero" vertical motion so it doesn't need to be accuracte as long as there are three difference responses depending on the postion of the joystick. 
+
+
+All Videos in the following drive folder: https://drive.google.com/drive/folders/10ZMQELM67BgY7nlwMqqNGApOYQbNRAxc
+
 
 * [ESE5160 Example Repo Submission](https://github.com/ese5160/example-repository-submission)
 * [Markdown Guide: Basic Syntax](https://www.markdownguide.org/basic-syntax/)

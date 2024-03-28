@@ -1,3 +1,9 @@
+/*
+ * LCD_GFX.c
+ *
+ *  Author: jessi
+ */
+
 #include <avr/io.h>
 #include <string.h>
 #include <stdio.h>
